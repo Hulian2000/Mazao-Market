@@ -2,4 +2,3 @@ virtual/
 /pyc
 .idea
 .env
-__pucache__
