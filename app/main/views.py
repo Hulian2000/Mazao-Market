@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 
 from app.models import Blog, Comment
 from app.main import main
@@ -6,7 +6,7 @@ from app.requests import getWeatherData
 
 from .forms import BlogForm
 
-from flask_login import login_required,current_user
+from flask_login import login_required, current_user
 
 
 @main.route('/')
@@ -28,8 +28,19 @@ def create_blog():
         return redirect(url_for('main.index'))
     return render_template('new_blog.html', form=form)
 
+
 @main.route('/all_blogs')
 def blogs():
     blogs = Blog.query.order_by(Blog.id.desc()).all()
     return render_template('fammers_blog.html', blogs=blogs)
 
+
+@main.route('/comment/<blog_id>', methods=['GET', 'POST'])
+@login_required
+def comment(blog_id):
+    blog = Blog.query.get(blog_id)
+    comment = request.form.get('newcomment')
+    user_id = current_user._get_current_object().id
+    new_comment = Comment(comment=comment, user_id=user_id, blog_id=blog_id)
+    new_comment.save()
+    return redirect(url_for('main.blogs', id=blog.id))

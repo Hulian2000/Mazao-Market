@@ -60,7 +60,7 @@ class Blog(db.Model):
     like = db.relationship('Like', backref='blog', lazy='dynamic')
     dislike = db.relationship('Dislike', backref='blog', lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    comment = db.relationship('Comment', backref='blog', lazy=True)
+    comment = db.relationship('Comment', backref='blog', lazy='dynamic')
 
 
     def save_blog(self):
