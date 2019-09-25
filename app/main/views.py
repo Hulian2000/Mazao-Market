@@ -31,5 +31,5 @@ def create_blog():
 @main.route('/all_blogs')
 def blogs():
     blogs = Blog.query.order_by(Blog.id.desc()).all()
-    return render_template('fammers_blog.html', blogs = blogs)
+    return render_template('fammers_blog.html', blogs=blogs)
 
