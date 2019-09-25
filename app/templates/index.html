@@ -2,4 +2,9 @@
 
 {% block content%}
 <h1>Mazao Plus</h1>
+<div>
+    {% for data in weather_data %}
+    <p>{{data.coord.lon}}</p>
+    {% endfor %}
+</div>
 {% endblock %}
