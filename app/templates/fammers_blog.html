@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% block content %}
+    <div class="container" style="margin-top:6%">
+        <div class="row">
+            {% for blog in blogs %}
+                <div class="card">
+                    <div class="card-title">
+                        {{blog.title}}
+                    </div>
+                    <div class="card-body">
+                        {{blog.post}}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
