@@ -11,9 +11,9 @@ class User(db.Model):
     location = db.Column(db.String(120), nullable = False)
     datejoined = db.Column(db.DateTime,default=datetime.utcnow)
     hash_password = db.Column(db.String(255),nullable = False)
-    post = db.reletionship('Blog', backref='user', lazy = 'dynamic')
+    post = db.relationship('Blog', backref='user', lazy = 'dynamic')
     like = db.relationship('Like',backref='user', lazy='dynamic')
-    comment = db.reletionship('Comment', backref='user', lazy = True )
+    comment = db.relationship('Comment', backref='user', lazy = True )
 
     @property
     def set_password(self):
@@ -45,7 +45,7 @@ class Blog(db.Model):
     dateposted = db.Column(db.DateTime,default=datetime.utcnow)
     like = db.relationship('Like',backref='blog', lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    comment = db.reletionship('Comment', backref='blog', lazy = True )
+    comment = db.relationship('Comment', backref='blog', lazy = True )
 
     def save_blog(self):
         db.session.add(self)
