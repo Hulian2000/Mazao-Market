@@ -1,11 +1,11 @@
-from flask import render_template, redirect, url_for, flash, request
-from flask_login import login_user, logout_user, login_required
-from . import auth
-from ..models import User
-from .forms import RegistrationForm, LoginForm
-from ..import db
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from ..email import mail_message
+   from flask import render_template, redirect, url_for, flash, request
+   from flask_login import login_user, logout_user, login_required
+   from . import auth
+   from ..models import User
+   from .forms import RegistrationForm, LoginForm
+   from ..import db
+   from wtforms import StringField, PasswordField, BooleanField, SubmitField
+   from ..email import mail_message
 @auth.route('/login', methods=['GET', 'POST']) # login view function that renders a template file
 def login():
    login_form = LoginForm()
