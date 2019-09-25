@@ -14,7 +14,7 @@ def index():
 
 
 @main.route('/blog')
-@login_required
+
 def create_blog():
     form = BlogForm()
     if form.validate_on_submit():
