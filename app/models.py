@@ -1,8 +1,10 @@
+
 from datetime import datetime
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db
+
 
 
 
@@ -19,6 +21,7 @@ class User(db.Model):
     dislike = db.relationship('Dislike', backref='user', lazy='dynamic')
     comment = db.relationship('Comment', backref='user', lazy=True)
 
+
     @property
     def set_password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -27,8 +30,10 @@ class User(db.Model):
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
 
+
     def verify_password(self, password):
         return check_password_hash(self.hashed_password, password)
+
 
     def save(self):
         db.session.add(self)
@@ -53,6 +58,7 @@ class Blog(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     comment = db.relationship('Comment', backref='blog', lazy=True)
 
+
     def save_blog(self):
         db.session.add(self)
         db.session.commit()
@@ -60,6 +66,7 @@ class Blog(db.Model):
     def delete_blog(self):
         db.session.add(self)
         db.session.commit()
+
 
     def get_blog(id):
         blog = Blog.query.filter_by(id=id).first()
@@ -78,6 +85,7 @@ class Comment(db.Model):
     blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
+
     def save(self):
         db.session.add(self)
         db.session.commit()
@@ -89,6 +97,7 @@ class Comment(db.Model):
     def get_comment(id):
         comment = Comment.query.all(id=id)
         return comment
+
 
     def __repr__(self):
         return f'Comment {self.comment}'
@@ -119,14 +128,17 @@ class Dislike(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
 
+
     def save(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
+
     def get_dislikes(cls, id):
         dislikes = Dislike.query.filter_by(blog_id=id).all()
         return dislikes
 
     def __repr__(self):
         return f'{self.user_id}:{self.blog_id}'
+
