@@ -17,9 +17,13 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        {% if current_user.is_authenticated %}
+                        <li class="text-lime"><a href="" class="text-lime">{{current_user.username}}</a></li>
                         <li class="text-lime"><a href="{{url_for('auth.logout')}}" class="text-lime">Logout</a></li>
+                        {% else %}
                         <li class="text-lime"><a href="{{url_for('auth.login')}}" class="text-lime">Login</a></li>
                         <li class="text-lime"><a href="{{url_for('auth.signup')}}" class="text-lime">Register</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>

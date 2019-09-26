@@ -1,4 +1,5 @@
 import requests
+from flask_login import current_user
 from config import Config
 from app.models import User
 
@@ -42,15 +43,15 @@ headers = {
 }
 
 
-def getAgriNews(article):
+def getAgriNews():
     source_data = []
-    articles_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(article, Config.API_KEY)
+    articles_url = 'https://newsapi.org/v2/everything?q=farming&apiKey={}'.format(Config.API_KEY)
     response = requests.get(articles_url)
     if response.status_code == 200:
         for data in response.json()['articles']:
             source_data.append(data)
-            print(source_data)
-            return source_data
+        print(source_data)
+        return source_data
 
 
 # Get Trending news function

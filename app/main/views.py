@@ -2,13 +2,13 @@ from flask import render_template, redirect, url_for, request, flash, abort
 from flask_login import current_user, login_required
 
 from app.main import main
-from app.models import Blog, Comment, Like, Dislike, User
+from app.models import Blog, Comment, Like, Dislike
 from app.requests import getWeatherData, getAgriNews
 from .forms import BlogForm
 from .. import db
 
 weatherdata = getWeatherData()
-agrinews = getAgriNews('Potatoes')
+agrinews = getAgriNews()
 
 
 @main.route('/')
@@ -21,14 +21,10 @@ def weather():
     return render_template('weather_data.html', weatherdata=weatherdata)
 
 
-@main.route('/news', methods=['GET', 'POST'])
+@main.route('/news')
 def news():
-    if request.method == 'POST':
-        search = request.form.get("search")
-        articles = getAgriNews('potatoes')
-    else:
-        articles = getAgriNews('farming')
-    return render_template('news.html', articles=articles)
+    articles = getAgriNews()
+    return render_template('news.html', articles=articles, current_user=current_user)
 
 
 @main.route('/new-blog', methods=['GET', 'POST'])
