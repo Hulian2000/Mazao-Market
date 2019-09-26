@@ -1,26 +1,23 @@
 {% extends 'base.html'%}
 {% block styles %}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/js/mdb.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
 {% endblock %}
 {% block content %}
 <div class="container mt-5">
     <div class="row">
         {% for blog in blogs %}
         <div class="card mb-3">
-            <div class="card-header"> {{blog.title}}</div>
+            <div class="card-header bg-success"> <h3 style="color:white" class="text-center"> {{blog.title | title}}</h3></div>
             <div class="card-body">
-                <p class="card-text">{{blog.post}}</p>
+                <p class="card-text">{{blog.post | truncate(400)}}....</p>
                 <p>{{blog.comment.count()}} comments</p>
                 <a href="{{url_for('main.blog', id = blog.id)}}" class="black-text d-flex justify-content-end"><h5>Read more <i
                         class="fas fa-angle-double-right"></i></h5></a>
             </div>
             <div class="card-footer">
-                <a class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#modalComment">Comment</a>
+                <button class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#modalComment">Comment</button>
                 {% if current_user.is_authenticated%}
                 <a class="btn btn-info btn-sm" href="{{url_for('main.updateblog',blog_id=blog.id )}}">Update</a>
                 <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalConfirmDelete" href="">Delete</a>
