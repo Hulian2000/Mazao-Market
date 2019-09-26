@@ -1,14 +1,18 @@
 
 from datetime import datetime
 
+from flask_login import current_user, UserMixin
+
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app import db
+from app import db, login_manager
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
 
-
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
@@ -23,16 +27,16 @@ class User(db.Model):
 
 
     @property
-    def set_password(self):
+    def password(self):
         raise AttributeError('You cannot read the password attribute')
 
-    @set_password.setter
+    @password.setter
     def password(self, password):
-        self.hashed_password = generate_password_hash(password)
+        self.hash_password = generate_password_hash(password)
 
 
     def verify_password(self, password):
-        return check_password_hash(self.hashed_password, password)
+        return check_password_hash(self.hash_password, password)
 
 
     def save(self):
@@ -56,7 +60,7 @@ class Blog(db.Model):
     like = db.relationship('Like', backref='blog', lazy='dynamic')
     dislike = db.relationship('Dislike', backref='blog', lazy='dynamic')
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    comment = db.relationship('Comment', backref='blog', lazy=True)
+    comment = db.relationship('Comment', backref='blog', lazy='dynamic')
 
 
     def save_blog(self):
