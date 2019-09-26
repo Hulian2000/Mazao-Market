@@ -1,25 +1,32 @@
 <div id="header_area" class="navbar navbar-default bg-transparent navbar-fixed-top menu-top">
-  <div class="container">
-    <div class="header_logo">
-      <a href="/" class="navbar-brand">
-        <img src="../static/images/logo11.png" alt="header logo">
-      </a>
-    </div>
-    <div class="mobile-nav"></div>
-    <div class="navbar-collapse collapse">
-      <nav>
-        <div class="main_menu">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="" class="">Farmers blog</a></li>
-            <li><a href="" class="">Weather</a>
-            </li>
-            <li><a href="" class="">Market</a>
-            </li>
-            <li class="text-lime"><a href="" class="text-lime">Login</a></li>
-            <li class="text-lime"><a href="" class="text-lime">Register</a></li>
-          </ul>
+    <div class="container">
+        <div class="header_logo">
+            <a href="/" class="navbar-brand">
+                <img src="../static/images/logo11.png" alt="header logo">
+            </a>
         </div>
-      </nav>
+        <div class="mobile-nav"></div>
+        <div class="navbar-collapse collapse">
+            <nav>
+                <div class="main_menu">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{url_for('main.blogs')}}" class="">Farmers blog</a></li>
+                        <li><a href="{{url_for('main.weather')}}" class="">Weather</a>
+                        </li>
+                        <li><a href="" class="">Market</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if current_user.is_authenticated %}
+                        <li class="text-lime"><a href="" class="text-lime">{{current_user.username}}</a></li>
+                        <li class="text-lime"><a href="{{url_for('auth.logout')}}" class="text-lime">Logout</a></li>
+                        {% else %}
+                        <li class="text-lime"><a href="{{url_for('auth.login')}}" class="text-lime">Login</a></li>
+                        <li class="text-lime"><a href="{{url_for('auth.signup')}}" class="text-lime">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
-  </div>
 </div>
