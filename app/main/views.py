@@ -91,11 +91,26 @@ def like(id):
     valid_string = f'{current_user.id}:{id}'
     for like in get_likes:
         to_str = f'{like}'
-        print(valid_string + " " + to_str)
         if valid_string == to_str:
             return redirect(url_for('main.blogs', id=id))
         else:
             continue
     new_vote = Like(user=current_user, blog_id=id)
+    new_vote.save()
+    return redirect(url_for('main.blogs', id=id))
+
+
+@main.route('/blog/dislike/<int:id>', methods=['POST', 'GET'])
+@login_required
+def dislike(id):
+    get_dislikes = Dislike.get_dislikes(id)
+    valid_string = f'{current_user.id}:{id}'
+    for dislike in get_dislikes:
+        to_str = f'{dislike}'
+        if valid_string == to_str:
+            return redirect(url_for('main.blogs', id=id))
+        else:
+            continue
+    new_vote = Dislike(user=current_user, blog_id=id)
     new_vote.save()
     return redirect(url_for('main.blogs', id=id))

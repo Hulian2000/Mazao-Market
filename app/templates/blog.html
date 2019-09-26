@@ -15,7 +15,12 @@
             <h5  style="color:green">By: <span>{{blog.user.username}}</span></h5>
             <div id="comments">
 
-                <p>{{blog.comment.count()}} Comments</p>
+                <p>{{blog.comment.count()}} Comments
+                    {% if current_user == blog.user%}
+                    <span class="ml-4 mr-2"><a href=""><i class="fa fa-thumbs-up" style="font-size:18px;color: green"> {{blog.like.count()}}</i></a></span>
+                    <span class="ml-5 mr-2"><a href=""><i class="fa fa-thumbs-down" style="font-size:18px;color: red"> {{blog.dislike.count()}}</i></a></span>
+                    {%endif%}
+                </p>
 
                 <h4>Comments</h4>
                 <div class="row">
