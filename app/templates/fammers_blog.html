@@ -14,7 +14,7 @@
             <div class="card-body">
                 <p class="card-text">{{blog.post | truncate(400)}}....</p>
                 <p>{{blog.comment.count()}} comments
-                    <span class="ml-4 mr-2"><a href=""><i class="fa fa-thumbs-up" style="font-size:18px;color: green"> {{blog.like.count()}}</i></a></span>
+                    <span class="ml-4 mr-2"><a href="{{url_for('main.like',id = blog.id)}}"><i class="fa fa-thumbs-up" style="font-size:18px;color: green"> {{blog.like.count()}}</i></a></span>
                     <span class="ml-5"><a href=""><i class="fa fa-thumbs-down" style="font-size:18px;color: red"> {{blog.dislike.count()}}</i></a></span>
                 </p>
                 <a href="{{url_for('main.blog', id = blog.id)}}" class="black-text d-flex justify-content-end"><h5>Read more <i
@@ -57,7 +57,7 @@
             <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
                 <div class="modal-content text-center">
                     <div class="modal-header d-flex justify-content-center">
-                        <p class="heading">Are you sure ?</p>
+                        <p class="heading">Do You Want To Delete?</p>
                     </div>
                     <div class="modal-body">
                         <i class="fas fa-times fa-4x animated rotateIn"></i>

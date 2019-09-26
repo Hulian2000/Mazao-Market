@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, request, flash, abort
 
-from app.models import Blog, Comment
+from app.models import Blog, Comment, Like, Dislike
 from app.main import main
 from app.requests import getWeatherData
 from .. import db
@@ -38,6 +38,7 @@ def blogs():
 @main.route('/blog/<id>')
 def blog(id):
     comments = Comment.query.filter_by(blog_id=id).all()
+    comments = comments[::-1]
     blog = Blog.query.get(id)
     return render_template('blog.html', blog=blog, comments=comments)
 
@@ -81,3 +82,20 @@ def updateblog(blog_id):
         form.title.data = blog.title
         form.post.data = blog.post
     return render_template('new_blog.html', form=form)
+
+
+@main.route('/blog/like/<int:id>', methods=['POST', 'GET'])
+@login_required
+def like(id):
+    get_likes = Like.get_likes(id)
+    valid_string = f'{current_user.id}:{id}'
+    for like in get_likes:
+        to_str = f'{like}'
+        print(valid_string + " " + to_str)
+        if valid_string == to_str:
+            return redirect(url_for('main.blogs', id=id))
+        else:
+            continue
+    new_vote = Like(user=current_user, blog_id=id)
+    new_vote.save()
+    return redirect(url_for('main.blogs', id=id))
