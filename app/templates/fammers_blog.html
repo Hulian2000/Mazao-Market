@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% block styles %}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
 {% endblock %}
@@ -12,7 +13,10 @@
             <div class="card-header bg-success"> <h3 style="color:white" class="text-center"> {{blog.title | title}}</h3></div>
             <div class="card-body">
                 <p class="card-text">{{blog.post | truncate(400)}}....</p>
-                <p>{{blog.comment.count()}} comments</p>
+                <p>{{blog.comment.count()}} comments
+                    <span class="ml-4 mr-2"><a href=""><i class="fa fa-thumbs-up" style="font-size:18px;color: green"> {{blog.like.count()}}</i></a></span>
+                    <span class="ml-5"><a href=""><i class="fa fa-thumbs-down" style="font-size:18px;color: red"> {{blog.dislike.count()}}</i></a></span>
+                </p>
                 <a href="{{url_for('main.blog', id = blog.id)}}" class="black-text d-flex justify-content-end"><h5>Read more <i
                         class="fas fa-angle-double-right"></i></h5></a>
             </div>
@@ -53,7 +57,7 @@
             <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
                 <div class="modal-content text-center">
                     <div class="modal-header d-flex justify-content-center">
-                        <p class="heading">Are you sure?</p>
+                        <p class="heading">Are you sure ?</p>
                     </div>
                     <div class="modal-body">
                         <i class="fas fa-times fa-4x animated rotateIn"></i>
