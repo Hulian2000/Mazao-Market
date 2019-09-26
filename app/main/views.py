@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request, flash, abort
 from flask_login import current_user, login_required
 
 from app.main import main
-from app.models import Blog, Comment, Like, Dislike
+from app.models import Blog, Comment, Like, Dislike, User
 from app.requests import getWeatherData, getAgriNews
 from .forms import BlogForm
 from .. import db

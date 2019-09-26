@@ -1,5 +1,6 @@
 import requests
 from config import Config
+from app.models import User
 
 """
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -7,7 +8,10 @@ from config import Config
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """
 
-
+user = User.query.all()
+for i in user:
+    location = i.location
+    print(location)
 # SAMPLE WEATHER API REQUEST
 # request = 'http://api.openweathermap.org/data/2.5/weather?q=Kiambu&appid=6d98967004f5e634642db86f5f402d9e'
 
@@ -16,7 +20,7 @@ from config import Config
 def getWeatherData():
     # response = requests.get(url, headers=headers, params=querystring)
     response = requests.get(
-        'http://api.openweathermap.org/data/2.5/weather?q=eldoret&appid=6d98967004f5e634642db86f5f402d9e')
+        f'http://api.openweathermap.org/data/2.5/weather?q={location}&appid=6d98967004f5e634642db86f5f402d9e')
     if response.status_code == 200:
         print(response.json())  # Check the response
         return response.json()
