@@ -16,14 +16,14 @@
             <div class="card-body">
                 <p class="card-text">{{blog.post}}</p>
                 <p>{{blog.comment.count()}} comments</p>
-                <a href="#!" class="black-text d-flex justify-content-end"><h5>Read more <i
+                <a href="{{url_for('main.blog', id = blog.id)}}" class="black-text d-flex justify-content-end"><h5>Read more <i
                         class="fas fa-angle-double-right"></i></h5></a>
             </div>
             <div class="card-footer">
                 <a class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#modalComment">Comment</a>
                 {% if current_user.is_authenticated%}
-                     <a class="btn btn-info btn-sm" href="">Update</a>
-                    <a class="btn btn-danger btn-sm" href="">Delete</a>
+                <a class="btn btn-info btn-sm" href="{{url_for('main.updateblog',blog_id=blog.id )}}">Update</a>
+                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalConfirmDelete" href="">Delete</a>
                 {% endif %}
             </div>
         </div>
@@ -47,6 +47,25 @@
                                 <button class="btn btn-danger btn-sm " data-dismiss="modal">Exit</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header d-flex justify-content-center">
+                        <p class="heading">Are you sure?</p>
+                    </div>
+                    <div class="modal-body">
+                        <i class="fas fa-times fa-4x animated rotateIn"></i>
+                    </div>
+                    <div class="modal-footer flex-center">
+                        <form action="{{url_for('main.delete_post',blog_id = blog.id)}}" method="POST">
+                            <input type="submit" class="btn  btn-outline-success btn-sm" value="Yes">
+                        </form>
+                        <a type="button" class="btn btn-sm btn-danger waves-effect" data-dismiss="modal">No</a>
                     </div>
                 </div>
             </div>
