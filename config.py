@@ -12,3 +12,4 @@ class Config:
     RAPID_API_HOST = os.environ.get('RAPID_API_HOST')
     RAPID_API_KEY = os.environ.get('RAPID_API_KEY')
     RAPID_API_URL = os.environ.get('RAPID_API_URL')
+    API_KEY = os.environ.get('API_KEY')

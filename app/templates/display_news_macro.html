@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% macro display_news(articles) %}
+<div class="container-fluid articles">
+    <div>
+        <br><br>
+    </div>
+    <div class="jumbotron">
+        <div class="overlay">
+            <h1 class="text-white txt">{{source}} Articles</h1>
+        </div>
+    </div>
+    <div class="card-columns">
+        {% for article in articles %}
+        <div class="card">
+            <img src="{{article.urlToImage}}" alt="" class="card-img-top">
+            <div class="card-body">
+                <p>{{article.description}}</p>
+                <p><br>{{ article.author}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endmacro %}

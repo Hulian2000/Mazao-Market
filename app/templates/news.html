@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% from 'display_news_macro.html' import display_news %}
+{% block content %}
+<div>{{display_news(articles)}}</div>
+{% endblock %}
