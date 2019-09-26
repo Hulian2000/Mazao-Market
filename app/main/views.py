@@ -8,13 +8,18 @@ from .forms import BlogForm
 
 from flask_login import login_required, current_user
 
+weatherdata = getWeatherData()
+
 
 @main.route('/')
 def index():
     return render_template('index.html')
 
-    weatherdata = getWeatherData()
-    return render_template('index.html', weatherdata=weatherdata)
+
+@main.route('/weather')
+def weather():
+    return render_template('weather_data.html', weatherdata=weatherdata)
+
 
 
 @main.route('/new-blog', methods=['GET', 'POST'])
