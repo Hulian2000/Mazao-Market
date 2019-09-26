@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<body>
+<div class="welcome-slider-area">
+    <div class="single-slide-item" data-stellar-background-ratio="0.3"
+         style="background-color:rgb(41, 151, 89); background-size: cover;">
+        <h2 class="text-center hi-text">Hi</h2>
+        <div class="container" style="display:flex; justify-content:space-around;">
+            <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;">
+                <div class="card-body">
+                    <h2 class="text-center">Temperature</h2>
+                    <img src="https://img.icons8.com/color/96/000000/temperature.png weather_ico" alt="" class="card-image d-block mx-auto">
+                    <h3 class="text-center">{{weatherdata.main.temp}}</h3>
+                </div>
+            </div>
+            <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;">
+                <div class="card-body">
+                    <h2 class="text-center">Pressure</h2>
+                    <img src="https://img.icons8.com/color/96/000000/pressure.png weather_ico" alt="" class="card-image d-block mx-auto">
+                    <h3 class="text-center">{{weatherdata.main.pressure}}</h3>
+                </div>
+            </div>
+            <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;">
+                <div class="card-body">
+                    <h2 class="text-center">Humidity</h2>
+                    <img src="https://img.icons8.com/dusk/64/000000/humidity.png weather_ico" alt="" class="card-image d-block mx-auto">
+                    <h3 class="text-center">{{weatherdata.main.humidity}}</h3>
+                </div>
+            </div>
+            <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;">
+                <div class="card-body">
+                    <h2 class="text-center">Wind Speed</h2>
+                    <img src="https://img.icons8.com/doodle/48/000000/wind-turbine.png weather_ico" alt="" class="card-image d-block mx-auto">
+                    <h3 class="text-center">{{weatherdata.wind.speed}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center">
+            Weather
+        </p>
+
+    </div>
+</div>
+</body>
+{% endblock %}
