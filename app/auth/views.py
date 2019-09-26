@@ -1,8 +1,10 @@
 from flask import render_template, flash, request, redirect, url_for
 from flask_login import login_user, logout_user, login_required
 from app.auth import auth
+from .. import app,db
 from app.models import User
-from .forms import RegForm, LoginForm
+from flask import render_template, url_for, flash, redirect
+from .forms import SignupForm
 
 
 @auth.route('/login', methods=['POST', 'GET'])
@@ -17,14 +19,18 @@ def login():
     return render_template('auth/login.html', form=form)
 
 
-@auth.route('/signup', methods=["POST", "GET"])
+
+@auth.route('/signup', methods = ['GET','POST'])
 def signup():
-    form = RegForm()
+    form=SignupForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data, location = form.location.data, password=form.password.data)
-        user.save()
-        return redirect(url_for('auth.login'))
-    return render_template('auth/signup.html', registration_form=form)
+        user = User(username=form.username.data, email=form.email.data, location=form.location.data, password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash(f"Account has been created!","success")
+        return redirect(url_for('main.index'))
+    return render_template('auth/signup.html',title="SignUp", form=form )
+
 
 
 @auth.route('/logout')
