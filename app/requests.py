@@ -26,10 +26,12 @@ headers = {
 
 
 def getWeatherData():
-    response = requests.get(url, headers=headers, params=querystring)
+    # response = requests.get(url, headers=headers, params=querystring)
+    response = requests.get(
+        'http://api.openweathermap.org/data/2.5/weather?q=eldoret&appid=6d98967004f5e634642db86f5f402d9e')
     if response.status_code == 200:
-        print(response)
-        return response
+        print(response.json())  # Check the response
+        return response.json()
 
 
 """ 
