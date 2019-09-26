@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import Required, Email, EqualTo, Length
-from wtforms import ValidationError
-from ..models import User
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Required
+from app.models import User
 
 
 class LoginForm(FlaskForm):
@@ -12,19 +11,28 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
-class RegForm(FlaskForm):
-    username = StringField('Enter Your Username', validators=[Required(), Length(min=4, max=20)])
-    location = StringField('Enter Your location', validators=[Required()])
-    email = StringField('Email Address', validators=[Required(), Email()])
-    password = PasswordField('Password',
-                             validators=[Required(), EqualTo('password_confirm', message='Passwords must match')])
-    password_confirm = PasswordField('Confirm Passwords', validators=[Required()])
-    submit = SubmitField('Sign Up')
+class SignupForm(FlaskForm):
+    username = StringField("User Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    location = StringField("Location", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    confirm_password = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("password")])
+    submit = SubmitField("Sign Up")
 
-    def validate_email(self, data_field):
-        if User.query.filter_by(email=data_field.data).first():
-            raise ValidationError(message="The Email has already been taken!")
+    '''
+    Custom Validation to ensure that a user with that username does not exist in our database.
+    '''
 
-    def validate_username(self, data_field):
-        if User.query.filter_by(username=data_field.data).first():
-            raise ValidationError(message="The username has already been taken")
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError('A user with that username already exists.Please choose another user')
+
+    '''
+    Custom Validation to ensure that a user with that email does not exist in our database.
+    '''
+
+    def validate_email(swlf, email):
+        email = User.query.filter_by(email=email.data).first()
+        if email:
+            raise ValidationError('That email is already taken,please use another email.')

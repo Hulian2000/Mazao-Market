@@ -21,7 +21,6 @@ def weather():
     return render_template('weather_data.html', weatherdata=weatherdata)
 
 
-
 @main.route('/new-blog', methods=['GET', 'POST'])
 @login_required
 def create_blog():
@@ -30,7 +29,7 @@ def create_blog():
         user_id = current_user._get_current_object().id
         new_blog = Blog(title=form.title.data, post=form.post.data, user_id=user_id)
         new_blog.save_blog()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.blogs'))
     return render_template('new_blog.html', form=form)
 
 
