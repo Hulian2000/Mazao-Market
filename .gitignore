@@ -2,3 +2,4 @@ virtual/
 /pyc
 .idea
 .env
+__pycache__

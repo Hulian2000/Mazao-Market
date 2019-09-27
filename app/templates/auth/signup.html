@@ -1,13 +1,15 @@
 {% extends "base.html" %}
-
-
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+{% endblock%}
 {% block content %}
 
 
-<div class="container content-section" style="margin-top:5%">
-    <div class="row">
+<div class="container content-section" id="particles-js" data-stellar-background-ratio="0.3">
+    <div class="row" id="signup">
         <div class="col-md-3"></div>
-        <div class="col-md-6 " >
+        <div class="col-md-6 " style="margin-top: 2%;" >
             <form method="POST" action="" class="mt-5">
                 {{ form.hidden_tag() }}
 

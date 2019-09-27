@@ -1,8 +1,12 @@
 {% extends 'base.html'%}
 {% import 'bootstrap/wtf.html' as wtf%}
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+{% endblock%}
 {% block content %}
-<div class="container" style="margin-top:5%">
-    <div class="row">
+<div class="container " id="particles-js" style="margin-top:5%">
+    <div class="row division" id="login">
         <div class="col-md-3"></div>
         <div class="col-md-6">
 
