@@ -28,7 +28,7 @@ def signup():
         db.session.add(user)
         db.session.commit()
         flash(f"Account has been created!", "success")
-        return redirect(url_for('main.login'))
+        return redirect(url_for('auth.login'))
     return render_template('auth/signup.html', title="SignUp", form=form)
 
 
