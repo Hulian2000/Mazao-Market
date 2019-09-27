@@ -1,8 +1,9 @@
 import os
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+
 from config import Config
 ##################################
 from flask_mail import Mail
@@ -23,8 +24,10 @@ app.config['MAIL_PASSWORD']= os.environ.get('EMAIL_PASS')
 
 mail = Mail(app)
 
+
 def create_app():
     app.config.from_object(Config)
+    login_manager.init_app(app)
     from app.auth import auth as auth_blueprint
     from app.main import main as main_blueprint
     app.register_blueprint(auth_blueprint)
