@@ -341,28 +341,26 @@ body{
 }
 
 #login {
-    margin-top: 8%;
-    margin-left: 32%;
-    align-self: center;
-    background: white;
-    width: 500px;
-    vertical-align: center;
-    horiz-align: center;
-    height: 350px;
-    cursor: ew-resize;
-    position: absolute;
-    border-radius: 15px;
-    elevation: 30deg;
-}
-#signup {
-    margin-top: 8%;
+    margin-top: 6%;
     margin-left: 30%;
     align-self: center;
     background: white;
     width: 500px;
     vertical-align: center;
     horiz-align: center;
-    height: 550px;
+    cursor: ew-resize;
+    position: absolute;
+    border-radius: 15px;
+    elevation: 30deg;
+}
+#signup {
+    margin-top: 6%;
+    margin-left: 30%;
+    align-self: center;
+    background: white;
+    width: 600px;
+    vertical-align: center;
+    horiz-align: center;
     cursor: ew-resize;
     position: absolute;
     border-radius: 15px;
