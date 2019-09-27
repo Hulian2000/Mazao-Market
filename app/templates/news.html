@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
-{% from 'display_news_macro.html' import display_news %}
+{% from 'display_news_macro.html' import display_news%}
+
+{% block styles %}
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
+
 {% block content %}
 <div>{{display_news(articles)}}</div>
 {% endblock %}
