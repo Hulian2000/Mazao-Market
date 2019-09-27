@@ -6,6 +6,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
 {% endblock %}
 {% block content %}
+<body style="background-image:url('../static/images/agrisi.jpg')">
 <div class="container mt-5">
     {% if current_user.is_authenticated %}
     <a class="btn btn-sm btn-outline-success mb-3" href="{{url_for('main.create_blog')}}">Create Blog</a>
@@ -88,7 +89,7 @@
     </div>
 
 </div>
-
+</body>
 {% endblock %}
 
 {% block script %}

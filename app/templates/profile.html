@@ -8,15 +8,16 @@
 
 {% block content %}
 <body style="background-image:url('../static/images/agrisi.jpg')">
-<div class="container" style="margin-top:3%; ">
-    <div class="row">
+<div class="container-fluid" style="margin-top:3%; ">
+   <div class="container-fluid" style="background-color:rgba(0,0,0,0.37); color:white; padding:5%;margin:0" >
+        <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <div class="content-section">
                 <img class="rounded-circle account-img d-block mx-auto"
                      style="height: 200px;width: 200px;margin-right: 20px;margin-bottom: 16px;" src="{{image_path}}">
                 <h2 class="account-heading text-center">{{current_user.username}}</h2>
-                <p class="text-secondary text-center">{{current_user.email}}</p>
+                <p class="text-info text-center">{{current_user.email}}</p>
                 <p class="text-center"><i class="fas fa-quote-left mr-3"></i> {{current_user.bio}} <i
                         class="fas fa-quote-right ml-3"></i></p>
 
@@ -43,6 +44,7 @@
         </div>
         <div class="col-md-2"></div>
     </div>
+   </div>
 </div>
 </body>
 {% endblock%}
