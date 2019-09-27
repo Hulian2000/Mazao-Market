@@ -9,11 +9,11 @@ from config import Config
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """
 
-user = User.query.all()
-for i in user:
-    location = i.location
-    print(location)
-
+# user = User.query.all()
+# for i in user:
+#     location = i.location
+#     print(location)
+location = 'nyeri'
 
 # SAMPLE WEATHER API REQUEST
 # request = 'http://api.openweathermap.org/data/2.5/weather?q=Kiambu&appid=6d98967004f5e634642db86f5f402d9e'

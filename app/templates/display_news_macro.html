@@ -1,11 +1,12 @@
 {% macro display_news(articles) %}
-<div class="container-fluid articles">
-    <div>
+<div class="container-fluid articles" style="background-image:url('../static/images/agrisi.jpg')">
+    <div class="overlay">
+        <div>
         <br><br>
     </div>
     <div class="jumbotron">
         <div class="overlay">
-            <h1 class="text-white txt">{{source}} Articles</h1>
+            <h1 class="txt">{{source}} Articles on farming</h1>
         </div>
     </div>
     <div class="card-columns">
@@ -18,6 +19,7 @@
             </div>
         </div>
         {% endfor %}
+    </div>
     </div>
 </div>
 {% endmacro %}
