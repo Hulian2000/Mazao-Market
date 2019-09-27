@@ -1,6 +1,9 @@
+import os
+
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
+##################################
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 
@@ -13,6 +16,14 @@ login_manager.login_view = 'auth.login'
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 mail = Mail(app)
+
+################################
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+
+app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
+app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 
 
 def create_app():
