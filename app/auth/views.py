@@ -5,6 +5,7 @@ from .. import app, db
 from app.models import User
 from flask import render_template, url_for, flash, redirect
 from .forms import SignupForm, LoginForm
+from ..email import mail_message
 
 
 @auth.route('/login', methods=['POST', 'GET'])
@@ -25,6 +26,7 @@ def signup():
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data, location=form.location.data,
                     password=form.password.data)
+        mail_message("Welcome to Mazao Market", "email/welcome_user", user.email, {"user":user})
         db.session.add(user)
         db.session.commit()
         flash(f"Account has been created!", "success")
