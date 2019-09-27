@@ -5,14 +5,14 @@ from config import Config
 
 """
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    This file contains the calls to the weather and news API's and how to consume them using requests 
+    This file contains the calls to the weather and news API's and how to consume them using requests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """
 
 user = User.query.all()
 for i in user:
     location = i.location
-    # print(location)
+    print(location)
 
 
 # SAMPLE WEATHER API REQUEST

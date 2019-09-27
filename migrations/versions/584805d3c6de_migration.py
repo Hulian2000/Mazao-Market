@@ -1,8 +1,16 @@
+<<<<<<< HEAD:migrations/versions/584805d3c6de_migration.py
+"""MIgration
+
+Revision ID: 584805d3c6de
+Revises: 
+Create Date: 2019-09-27 09:28:04.370077
+=======
 """Add profile_image path
 
 Revision ID: 803359e373af
 Revises: 
 Create Date: 2019-09-27 09:26:21.231675
+>>>>>>> 996790872eca3ce2a25ee94f967d88c57ad1c464:migrations/versions/803359e373af_add_profile_image_path.py
 
 """
 from alembic import op
@@ -10,7 +18,11 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
+<<<<<<< HEAD:migrations/versions/584805d3c6de_migration.py
+revision = '584805d3c6de'
+=======
 revision = '803359e373af'
+>>>>>>> 996790872eca3ce2a25ee94f967d88c57ad1c464:migrations/versions/803359e373af_add_profile_image_path.py
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,7 +35,10 @@ def upgrade():
     sa.Column('username', sa.String(length=120), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('location', sa.String(length=120), nullable=False),
+<<<<<<< HEAD:migrations/versions/584805d3c6de_migration.py
+=======
     sa.Column('image_path', sa.String(length=255), nullable=True),
+>>>>>>> 996790872eca3ce2a25ee94f967d88c57ad1c464:migrations/versions/803359e373af_add_profile_image_path.py
     sa.Column('datejoined', sa.DateTime(), nullable=True),
     sa.Column('hash_password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),
