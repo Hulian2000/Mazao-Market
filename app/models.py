@@ -23,6 +23,7 @@ class User(db.Model, UserMixin):
     like = db.relationship('Like', backref='user', lazy='dynamic')
     dislike = db.relationship('Dislike', backref='user', lazy='dynamic')
     comment = db.relationship('Comment', backref='user', lazy=True)
+    # image_url = db.Column(db.String(255), default="default.png")
 
     @property
     def password(self):
@@ -135,3 +136,5 @@ class Dislike(db.Model):
 
     def __repr__(self):
         return f'{self.user_id}:{self.blog_id}'
+
+
