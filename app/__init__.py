@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
@@ -11,6 +12,7 @@ login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
+mail = Mail(app)
 
 
 def create_app():
