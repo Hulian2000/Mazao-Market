@@ -25,7 +25,8 @@
                 <h4>Comments</h4>
                 <div class="row">
                     {% for comment in comments %}
-                    <div class="col-md-2"></div>
+                    <div class="col-md-2"><img class="rounded-circle account-img d-block mx-auto"
+                     style="height: 80px;width: 80px;margin-right: 20px;margin-bottom: 16px;" src="{{comment.user.image_path}}"></div>
                     <div class="col-md-8">
                        <h5 class="mb-2"><span class="mr-2" style="color:green">{{comment.user.username}}</span> | <span class="ml-2">{{comment.posted.strftime('%d-%m-%Y')}}</span></h5>
                         <p class="mb-3"> {{ comment.comment }}</p>

@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from app.main import main
 from app.models import Blog, Comment, Like, Dislike
 from app.requests import getWeatherData, getAgriNews
-from .forms import BlogForm
+from .forms import BlogForm, UpdateProfile
 from .. import db
 
 weatherdata = getWeatherData()
@@ -47,7 +47,19 @@ def create_blog():
 @main.route('/profile', methods=['POST', 'GET'])
 @login_required
 def profile():
-    return render_template('profile.html')
+    form = UpdateProfile()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.bio = form.bio.data
+        current_user.location = form.location.data
+        db.session.commit()
+        return redirect(url_for('main.profile'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.bio.data = current_user.bio
+        form.location.data = current_user.location
+    image_path = url_for('static', filename='images/' + current_user.image_path)
+    return render_template('profile.html', image_path=image_path, form=form)
 
 
 @main.route('/all_blogs')
