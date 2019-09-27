@@ -22,6 +22,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True, nullable=False)
     location = db.Column(db.String(120), nullable=False)
     image_path = db.Column(db.String(255), default='default.png')
+    bio = db.Column(db.Text(), default='I am a farmer')
     datejoined = db.Column(db.DateTime, default=datetime.utcnow)
     hash_password = db.Column(db.String(255), nullable=False)
     post = db.relationship('Blog', backref='user', lazy='dynamic')

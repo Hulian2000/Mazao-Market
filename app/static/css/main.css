@@ -17,6 +17,13 @@ h6{
     font-weight: 600;
     line-height: normal;
 }
+
+.account-img {
+    height: 150px;
+    width: 150px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
 p{
     font-size: 14px;
     font-weight: 300;
@@ -363,6 +370,4 @@ body{
     border-radius: 15px;
     elevation: 30deg;
 }
-.post{
-padding:5px;
-}
+
