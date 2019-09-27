@@ -1,12 +1,13 @@
-import os
-import secrets
 from flask import render_template, flash, request, redirect, url_for
 from flask_login import login_user, logout_user, login_required, current_user
-from app.auth import auth
-from .. import app, db, mail
-from app.models import User
-from .forms import SignupForm, RequestResetForm, ResetPasswordForm, LoginForm
 from flask_mail import Message
+from passlib.handlers import bcrypt
+
+from app.auth import auth
+from app.models import User
+from .forms import SignupForm, LoginForm, RequestResetForm, ResetPasswordForm
+from .. import db, mail
+from ..email import mail_message
 
 
 @auth.route('/login', methods=['POST', 'GET'])
@@ -27,6 +28,7 @@ def signup():
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data, location=form.location.data,
                     password=form.password.data)
+        mail_message("Welcome to Mazao Market", "email/welcome_user", user.email, {"user": user})
         db.session.add(user)
         db.session.commit()
         flash(f"Account has been created!", "success")
@@ -35,24 +37,20 @@ def signup():
 
 
 @auth.route('/logout')
-@login_required 
+@login_required
 def logout():
     logout_user()
     return redirect(url_for("main.index"))
 
 
-
-
-###############################Reset Password using email#######################################################################################
-
-
 def send_reset_email(user):
     token = user.get_reset_token()
-    msg = Message('Password Reset Request',sender='ndundirokamau@gmail.com',recipients=[user.email])                 
+    msg = Message('Password Reset Request', sender='ndundirokamau@gmail.com', recipients=[user.email])
     msg.body = f'''To reset your password, visit the following link:
 {url_for('auth.reset_token', token=token, _external=True)}
-If you did not make this request then simply ignore this email and no changes will be made.
 
+If you did not make this request then simply ignore this email and no changes will be made.
+'''
     mail.send(msg)
 
 
@@ -69,8 +67,6 @@ def reset_request():
     return render_template('auth/reset_request.html', title='Reset Password', form=form)
 
 
-
-
 @auth.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated:
@@ -81,11 +77,8 @@ def reset_token(token):
         return redirect(url_for('auth.reset_request'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user.password = hashed_password
+        user.password = form.password.data
         db.session.commit()
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('auth.login'))
     return render_template('auth/reset_token.html', title='Reset Password', form=form)
-
-

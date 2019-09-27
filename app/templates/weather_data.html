@@ -2,50 +2,48 @@
 
 {% block content%}
 <body style="background-image: url('../static/images/agrisi.jpg');">
-    <div>
-        <div style="margin-top:8%;font-family: 'Shadows Into Light', cursive;">
-            <h2 class="text-center hi-text" style="font-size: 70px;">Hi {{current_user.username}},</h2>
-            <p class="text-center" style="font-size: 30px;">Weather in {{current_user.location}}</p>
-            <div class="container" style="display:flex; justify-content:space-around;">
-                <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;background-color: antiquewhite;">
-                    <div class="card-body">
-                        <h2 class="text-center">Temperature</h2>
-                        <img src="https://img.icons8.com/color/48/000000/temperature.png" alt=""
-                            class="card-image" style="margin-left: 40%">
-                        <h3 class="text-center">{{weatherdata.main.temp}} F</h3>
-                    </div>
-                </div>
-                <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;background-color: rgb(80, 199, 84);">
-                    <div class="card-body">
-                        <h2 class="text-center">Pressure</h2>
-                        <img src="https://img.icons8.com/color/48/000000/pressure.png" alt=""
-                            class="card-image" style="margin-left: 40%">
-                        <h3 class="text-center">{{weatherdata.main.pressure}} Psi</h3>
-                    </div>
-                </div>
-                <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;background-color: antiquewhite;">
-                    <div class="card-body">
-                        <h2 class="text-center">Humidity</h2>
-                        <img src="https://img.icons8.com/color/48/000000/humidity.png" alt=""
-                            class="card-image" style="margin-left: 40%">
-                        <h3 class="text-center">{{weatherdata.main.humidity}}</h3>
-                    </div>
-                </div>
-                <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;background-color: rgb(80, 199, 84);">
-                    <div class="card-body">
-                        <h2 class="text-center">Wind Speed</h2>
-                        <img src="https://img.icons8.com/color/48/000000/windsock.png" alt=""
-                            class="card-image d" style="margin-left: 40%">
-                        <h3 class="text-center">{{weatherdata.wind.speed}}</h3>
-                    </div>
+<div>
+    <div style="margin-top:8%;font-family: 'Shadows Into Light', cursive;">
+        <h2 class="text-center hi-text" style="font-size: 70px;">Hi {{current_user.username}},</h2>
+        <p class="text-center" style="font-size: 30px;">Weather in {{current_user.location}}</p>
+        <div class="container" style="display:flex; justify-content:space-around;">
+            <div class="card"
+                 style="height:300px; width:300px; margin:10px; margin-top:30px;background-color: antiquewhite;">
+                <div class="card-body">
+                    <h2 class="text-center">Temperature</h2>
+                    <img src="https://img.icons8.com/color/48/000000/temperature.png" alt=""
+                         class="card-image" style="margin-left: 40%">
+                    <h3 class="text-center">{{weatherdata.main.temp}} F</h3>
                 </div>
             </div>
-
-            <p class="text-center">
-                Weather
-            </p>
-
+            <div class="card"
+                 style="height:300px; width:300px; margin:10px; margin-top:30px;background-color: rgb(80, 199, 84);">
+                <div class="card-body">
+                    <h2 class="text-center">Pressure</h2>
+                    <img src="https://img.icons8.com/color/48/000000/pressure.png" alt=""
+                         class="card-image" style="margin-left: 40%">
+                    <h3 class="text-center">{{weatherdata.main.pressure}} Psi</h3>
+                </div>
+            </div>
+            <div class="card"
+                 style="height:300px; width:300px; margin:10px; margin-top:30px;background-color: antiquewhite;">
+                <div class="card-body">
+                    <h2 class="text-center">Humidity</h2>
+                    <img src="https://img.icons8.com/color/48/000000/humidity.png" alt=""
+                         class="card-image" style="margin-left: 40%">
+                    <h3 class="text-center">{{weatherdata.main.humidity}}</h3>
+                </div>
+            </div>
+            <div class="card"
+                 style="height:300px; width:300px; margin:10px; margin-top:30px;background-color: rgb(80, 199, 84);">
+                <div class="card-body">
+                    <h2 class="text-center">Wind Speed</h2>
+                    <img src="https://img.icons8.com/color/48/000000/windsock.png" alt=""
+                         class="card-image d" style="margin-left: 40%">
+                    <h3 class="text-center">{{weatherdata.wind.speed}}</h3>
+                </div>
+            </div>
         </div>
     </div>
-</body>
+</div>
 {% endblock %}

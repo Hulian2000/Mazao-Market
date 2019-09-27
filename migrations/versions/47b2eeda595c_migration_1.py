@@ -1,3 +1,6 @@
+<<<<<<< HEAD:migrations/versions/47b2eeda595c_migration_1.py
+"""Migration 1
+=======
 <<<<<<< HEAD:migrations/versions/584805d3c6de_migration.py
 """MIgration
 
@@ -6,11 +9,16 @@ Revises:
 Create Date: 2019-09-27 09:28:04.370077
 =======
 """Add profile_image path
+>>>>>>> e4e5181170e721dc53edb0d552ab591eba786700:migrations/versions/803359e373af_add_profile_image_path.py
 
-Revision ID: 803359e373af
+Revision ID: 47b2eeda595c
 Revises: 
+<<<<<<< HEAD:migrations/versions/47b2eeda595c_migration_1.py
+Create Date: 2019-09-27 10:34:09.667990
+=======
 Create Date: 2019-09-27 09:26:21.231675
 >>>>>>> 996790872eca3ce2a25ee94f967d88c57ad1c464:migrations/versions/803359e373af_add_profile_image_path.py
+>>>>>>> e4e5181170e721dc53edb0d552ab591eba786700:migrations/versions/803359e373af_add_profile_image_path.py
 
 """
 from alembic import op
@@ -18,11 +26,15 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
+<<<<<<< HEAD:migrations/versions/47b2eeda595c_migration_1.py
+revision = '47b2eeda595c'
+=======
 <<<<<<< HEAD:migrations/versions/584805d3c6de_migration.py
 revision = '584805d3c6de'
 =======
 revision = '803359e373af'
 >>>>>>> 996790872eca3ce2a25ee94f967d88c57ad1c464:migrations/versions/803359e373af_add_profile_image_path.py
+>>>>>>> e4e5181170e721dc53edb0d552ab591eba786700:migrations/versions/803359e373af_add_profile_image_path.py
 down_revision = None
 branch_labels = None
 depends_on = None
