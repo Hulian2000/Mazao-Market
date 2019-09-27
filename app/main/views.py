@@ -27,6 +27,11 @@ def news():
     return render_template('news.html', articles=articles, current_user=current_user)
 
 
+@main.route('/market')
+def market():
+    return render_template('market.html')
+
+
 @main.route('/new-blog', methods=['GET', 'POST'])
 @login_required
 def create_blog():

@@ -1,43 +1,37 @@
 {% extends 'base.html'%}
 
 {% block content%}
-{% block styles %}
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-{% endblock %}
 <body>
-<div class="welcome-slider-area">
-    <div class="single-slide-item" data-stellar-background-ratio="0.3"
-         style="background-color:rgb(41, 151, 89); background-size: cover;">
-        <h2 class="text-center hi-text">Hi</h2>
+<div>
+    <div style="background-color:rgb(41, 151, 89); margin-bottom:20%;">
+        <h2 class="text-center hi-text">Hi {{current_user.username}},</h2>
+        <p class="text-center">Weather in {{current_user.location}}</p>
         <div class="container" style="display:flex; justify-content:space-around;">
             <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;">
                 <div class="card-body">
                     <h2 class="text-center">Temperature</h2>
-                    <img src="https://img.icons8.com/color/96/000000/temperature.png weather_ico" alt="" class="card-image d-block mx-auto">
-                    <h3 class="text-center">{{weatherdata.main.temp}}</h3>
+                    <img src="https://img.icons8.com/color/48/000000/temperature.png" alt="" class="card-image d-block mx-auto">
+                    <h3 class="text-center">{{weatherdata.main.temp}} F</h3>
                 </div>
             </div>
             <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;">
                 <div class="card-body">
                     <h2 class="text-center">Pressure</h2>
-                    <img src="https://img.icons8.com/color/96/000000/pressure.png weather_ico" alt="" class="card-image d-block mx-auto">
-                    <h3 class="text-center">{{weatherdata.main.pressure}}</h3>
+                    <img src="https://img.icons8.com/color/48/000000/pressure.png" alt="" class="card-image d-block mx-auto">
+                    <h3 class="text-center">{{weatherdata.main.pressure}} Psi</h3>
                 </div>
             </div>
             <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;">
                 <div class="card-body">
                     <h2 class="text-center">Humidity</h2>
-                    <img src="https://img.icons8.com/dusk/64/000000/humidity.png weather_ico" alt="" class="card-image d-block mx-auto">
+                    <img src="https://img.icons8.com/color/48/000000/humidity.png" alt="" class="card-image d-block mx-auto">
                     <h3 class="text-center">{{weatherdata.main.humidity}}</h3>
                 </div>
             </div>
             <div class="card" style="height:300px; width:300px; margin:10px; margin-top:30px;">
                 <div class="card-body">
                     <h2 class="text-center">Wind Speed</h2>
-                    <img src="https://img.icons8.com/doodle/48/000000/wind-turbine.png weather_ico" alt="" class="card-image d-block mx-auto">
+                    <img src="https://img.icons8.com/color/48/000000/windsock.png" alt="" class="card-image d-block mx-auto">
                     <h3 class="text-center">{{weatherdata.wind.speed}}</h3>
                 </div>
             </div>
