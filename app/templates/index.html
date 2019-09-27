@@ -6,30 +6,35 @@
 
 {% block content%}
 <body>
-    <section id="home" class="particles_area">
-        <div class="welcome-slider-area">
-            <div class="single-slide-item" data-stellar-background-ratio="0.3"
-                style="background-image: url('../static/images/agri2.jpg'); background-position: center center; background-size: cover;">
-                <div id="particles-js"></div>
-                <div class="single-slide-item-table">
-                    <div class="single-slide-item-tablecell">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <br>
-                                </div>
-                                <div class="col-md-12 wow fadeInDown" data-animate="0.5s" data-wow-delay="1s">
-                                    <div class="slide_content">
+<section id="home" class="particles_area">
+    <div class="welcome-slider-area">
+        <div class="single-slide-item" data-stellar-background-ratio="0.3"
+             style="background-image: url('../static/images/agri2.jpg'); background-position: center center; background-size: cover;">
+            <div id="particles-js"></div>
+            <div class="single-slide-item-table">
+                <div class="single-slide-item-tablecell">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <br>
+                            </div>
+                            <div class="col-md-12 wow fadeInDown" data-animate="0.5s" data-wow-delay="1s">
+                                <div class="slide_content">
 
-                                        <h1>Mazao</h1>
-                                        <p>Bringing farmers together</p>
-
-                                        <div class="single_slide_item_button">
-                                            <a href="{{url_for('auth.login')}}" class="btn slider_btn active_btn">Get
-                                                Started</a>
-                                            <a href="{{url_for('auth.signup')}}" class="btn slider_btn">Join Us</a>
-                                        </div>
+                                    <h1>Mazao</h1>
+                                    <p>Bringing farmers together</p>
+                                    {% if current_user.is_authenticated %}
+                                    <div class="single_slide_item_button">
+                                        <a href="{{url_for('main.create_blog')}}" class="btn slider_btn active_btn">Write A Blog</a>
+                                        <a href="{{url_for('main.news')}}" class="btn slider_btn">News</a>
                                     </div>
+                                    {% else %}
+                                    <div class="single_slide_item_button">
+                                        <a href="{{url_for('auth.login')}}" class="btn slider_btn active_btn">Get
+                                            Started</a>
+                                        <a href="{{url_for('auth.signup')}}" class="btn slider_btn">Join Us</a>
+                                    </div>
+                                    {% endif%}
                                 </div>
                             </div>
                         </div>
@@ -37,6 +42,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </body>
 {% endblock %}
