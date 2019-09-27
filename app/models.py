@@ -17,13 +17,13 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     location = db.Column(db.String(120), nullable=False)
+    image_path = db.Column(db.String(255), default='default.png')
     datejoined = db.Column(db.DateTime, default=datetime.utcnow)
     hash_password = db.Column(db.String(255), nullable=False)
     post = db.relationship('Blog', backref='user', lazy='dynamic')
     like = db.relationship('Like', backref='user', lazy='dynamic')
     dislike = db.relationship('Dislike', backref='user', lazy='dynamic')
     comment = db.relationship('Comment', backref='user', lazy=True)
-    # image_url = db.Column(db.String(255), default="default.png")
 
     @property
     def password(self):
@@ -136,5 +136,3 @@ class Dislike(db.Model):
 
     def __repr__(self):
         return f'{self.user_id}:{self.blog_id}'
-
-
