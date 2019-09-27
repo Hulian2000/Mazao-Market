@@ -5,7 +5,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db, login_manager
 
+from  itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
+from config import Config
+
+SECRET_KEY = Config.SECRET_KEY
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -17,6 +21,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     location = db.Column(db.String(120), nullable=False)
+    image_path = db.Column(db.String(255), default='default.png')
     datejoined = db.Column(db.DateTime, default=datetime.utcnow)
     hash_password = db.Column(db.String(255), nullable=False)
     post = db.relationship('Blog', backref='user', lazy='dynamic')
@@ -42,6 +47,22 @@ class User(db.Model, UserMixin):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+
+    ################# reset password token################
+    def get_reset_token(self, expires_sec=1800):
+        s = Serializer(Config.SECRET_KEY, expires_sec)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(SECRET_KEY)
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
+
 
     def __repr__(self):
         return "User: %s" % str(self.username)

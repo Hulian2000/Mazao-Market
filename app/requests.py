@@ -22,6 +22,7 @@ for i in user:
 # Get weather data function
 def getWeatherData():
     # response = requests.get(url, headers=headers, params=querystring)
+    location='nairobi'
     response = requests.get(
         f'http://api.openweathermap.org/data/2.5/weather?q={location}&appid=6d98967004f5e634642db86f5f402d9e')
     if response.status_code == 200:
