@@ -13,3 +13,5 @@ class Config:
     RAPID_API_KEY = os.environ.get('RAPID_API_KEY')
     RAPID_API_URL = os.environ.get('RAPID_API_URL')
     API_KEY = os.environ.get('API_KEY')
+    SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+    DEFAULT_SENDGRID_SENDER = os.environ.get('DEFAULT_SENDGRID_SENDER')
