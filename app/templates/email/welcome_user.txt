@@ -1,0 +1,4 @@
+Hello {{user.username}}
+Karibu hapa Mazao Market
+
+Thanks for signing up :)
