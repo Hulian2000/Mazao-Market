@@ -44,6 +44,12 @@ def create_blog():
     return render_template('new_blog.html', form=form)
 
 
+@main.route('/profile', methods=['POST', 'GET'])
+@login_required
+def profile():
+    return render_template('profile.html')
+
+
 @main.route('/all_blogs')
 def blogs():
     blogs = Blog.query.order_by(Blog.id.desc()).all()
